@@ -4,23 +4,31 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const Router = require("./routes/");
 
 var app = express();
+
+const isDevMode = process.env.NODE_ENV === "development";
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+if(isDevMode){
+  app.use(logger('short'));
+}else{
+  app.use(logger('common'));
+}
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use("/dist", express.static("./dist"));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use("/api", Router);
+
+app.get("/", (req, res) => {
+  res.set("content-type", "text/html").sendFile(path.resolve("./dist", "index.html"));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,67 @@
+@mixin set-width($padding: 0px){
+    width: calc(100vw - $padding*2);
+    min-width: 1440px - $padding*2;
+}
+
+nav {
+    @include set-width;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+        @include set-width;
+        position: absolute;
+        height: 640px;
+        top: 0;
+        z-index: -1;
+    }
+}
+
+header {
+    @include set-width($padding: 80px);
+    position: absolute;
+    top: 0;
+    height: 94px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 80px;
+
+    z-index: 1;
+
+    * {
+        cursor: pointer;
+    }
+}
+
+main {
+    @include set-width($padding: 80px);
+    height: 775px;
+
+    position: absolute;
+    top: 640px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 80px;
+    gap: 80px;
+
+    img {
+        width: 1280px;
+    }
+}
+
+
+footer {
+    @include set-width;
+    position: relative;
+    top: 1575px;
+    height: 629px;
+    display: flex;
+    justify-content: center;
+}

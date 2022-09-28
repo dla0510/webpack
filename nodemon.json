@@ -1,0 +1,6 @@
+{
+    "verbose": false,
+    "watch": ".",
+    "ext": "js mjs json",
+    "ignore": ["views/**", "public/**"]
+}
