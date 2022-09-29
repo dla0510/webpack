@@ -26,7 +26,7 @@ app.use("/dist", express.static("./dist"));
 
 app.use("/api", Router);
 
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.set("content-type", "text/html").sendFile(path.resolve("./dist", "index.html"));
 });
 

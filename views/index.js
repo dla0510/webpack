@@ -1,4 +1,4 @@
-import Main from "@components/Main";
+import Main from "@component/Main";
 import Router from "@core/Router";
 
 const app = document.getElementById("app");
